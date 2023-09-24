@@ -89,7 +89,7 @@ app.post('/login', passport.authenticate('local', {
       case 'shipper':
         res.redirect('/shipper');
         break;
-      case 'vendor':
+      case 'vendor':  
         res.redirect('/vendor');
         break;
       case 'customer':
