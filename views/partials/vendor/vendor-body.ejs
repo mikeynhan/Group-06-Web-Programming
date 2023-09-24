@@ -5,6 +5,7 @@
             <th>Product</th>
             <th>Price</th>
             <th>Stock</th>
+            <th>Image</th>
             <th>Action</th>
         </tr>
         <% if (products && products.length > 0) { %>
@@ -13,6 +14,13 @@
                     <td><%= product.name %></td>
                     <td><%= product.price %></td>
                     <td><%= product.stockQuantity %></td>
+                    <td>
+                        <% if (product.imageUrl) { %>
+                            <img src="<%= product.imageUrl %>" alt="Image for <%= product.name %>" style="width: 100px; height: auto;">
+                        <% } else { %>
+                            <span>No Image Available</span>
+                        <% } %>
+                    </td>
                     <td class="vendor-edit">
                         <a href="/vendor/edit/<%= product._id %>"><i class="fa-solid fa-pen-to-square"></i></a>
                         <form method="POST" action="/users/vendor/delete/<%= product._id %>">  
@@ -25,13 +33,11 @@
             <% }) %>
         <% } else { %>
             <tr>
-                <td colspan="4">No products available.</td>
+                <td colspan="5">No products available.</td>
             </tr>
         <% } %>
     </table>
 </div>
-
-<!-- ... rest of the file ... -->
 
 <div class="container w-75 mb-5" id="add-prd">
     <h1>Add New Products</h1>
@@ -42,6 +48,8 @@
         <input class="form-control mb-3 rounded p-2" type="number" id="stock" name="stockQuantity" min="0">
         <label class="col-sm-2 col-form-label fw-bold" for="price">Price:</label>
         <input class="form-control mb-3 rounded p-2" type="number" id="price" name="price" required>
+        <label class="col-sm-2 col-form-label fw-bold" for="category">Category:</label>
+        <input class="form-control mb-3 rounded p-2" type="text" id="category" name="category" required>
         <label class="col-sm-2 col-form-label fw-bold" for="description">Description:</label>
         <input class="form-control mb-3 rounded p-2" type="text" id="description" name="description">
         <label class="col-sm-2 col-form-label fw-bold" for="product-image">Product Image:</label>
@@ -49,3 +57,4 @@
         <input class="form-control mb-3 rounded p-2 w-25 m-auto" id="submit-product" type="submit" value="Submit">
     </form>
 </div>
+
